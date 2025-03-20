@@ -5,8 +5,7 @@ import {
   RainbowKitProvider,
 } from '@rainbow-me/rainbowkit';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { WagmiProvider } from "wagmi"
-import { config } from "../../config"
+import { WagmiProvider, http } from "wagmi"
 
 import {
   mainnet,
@@ -15,11 +14,16 @@ import {
 
 const queryClient = new QueryClient();
 
-// const rainbowConfig = getDefaultConfig({
-//   appName: 'web3-nz-hackathon',
-//   projectId: 'd318b29914fb957cf18957b9bca89adf',
-//   chains: [mainnet, sepolia],
-// });
+const config = getDefaultConfig({
+  appName: 'web3-nz-hackathon',
+  projectId: 'd318b29914fb957cf18957b9bca89adf',
+  chains: [mainnet, sepolia],
+  transports: {
+    [mainnet.id]: http('https://eth-mainnet.g.alchemy.com/v2/JYWLuOthU8sE_RW4F18LDKQjtiUzugEw'),
+    [sepolia.id]: http('https://eth-sepolia.g.alchemy.com/v2/JYWLuOthU8sE_RW4F18LDKQjtiUzugEw'),
+  },
+  ssr: true,
+});
 
 export const Provider = ({children}: { children: React.ReactNode }) => {
   return (
