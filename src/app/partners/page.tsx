@@ -15,7 +15,7 @@ const initialProjects = [
   {
     id: 2,
     title: "Matariki Tu Rākau",
-    image: "/SampleImages/Matariki.jpg", 
+    image: "/SampleImages/Matariki.jpg",
     description: "A government-led program launched in 2018 to plant native trees in honor of military service and community well-being.",
     votes: 200,
     progress: 75,
@@ -23,14 +23,14 @@ const initialProjects = [
   {
     id: 3,
     title: "Project Crimson — The Living Legends Project",
-    image: "/SampleImages/ProjectCrimson.jpg", 
+    image: "/SampleImages/ProjectCrimson.jpg",
     description: "A project started to protect and restore New Zealand's native pōhutukawa and rātā trees.",
     votes: 300,
     progress: 100,
   },
 ]
 
-export default function Grow() {
+export default function Partners() {
   const [projects, setProjects] = React.useState(initialProjects)
 
   const handleVote = (projectId: number | string) => {

@@ -33,7 +33,7 @@ export default function Home() {
   }
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-white">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <div className="container mx-auto py-12 px-4 max-w-md">
           <div className="flex flex-col items-center space-y-8">
@@ -48,7 +48,7 @@ export default function Home() {
               <p className="text-sm text-muted-foreground text-right text-black">Balance: {balance} ETH</p>
             </div>
             <div>
-              <button 
+              <button
                 onClick={() => handleContribute()}
                 className="w-full py-6 text-lg bg-black text-white rounded-lg"
                 // disabled={!amount || Number(amount) <= 0 || Number(amount) > Number(balance)}

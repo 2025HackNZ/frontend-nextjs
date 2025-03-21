@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation";
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 
 
@@ -14,30 +15,32 @@ export default function Navbar({
   logo,
 }: NavbarProps) {
   const menuItems = [
-    { name: "Plant", href: "/" },
-    { name: "Grow", href: "/grow" },
-    { name: "Harvest", href: "/harvest" },
+    { name: "Contribute", href: "/" },
+    { name: "Partners", href: "/partners" },
+    { name: "Sponsors", href: "/sponsors" },
   ]
 
-  return (
-    <nav className="relative flex flex-col items-center w-full py-4 bg-white border-b border-gray-200">
-      {/* Logo on top */}
-      <div className="mb-4">
-        <Image src={logo || '/next.svg'} alt="Logo" width={120} height={60} className="h-auto" />
-      </div>
+  const pathname = usePathname(); // e.g., "/dashboard/settings"
 
-      {/* Connect wallet button on right */}
-      <div className="absolute right-4 top-1/2 -translate-y-1/2">
-        <ConnectButton />
+  return (
+    <nav className="fixed flex items-center justify-between w-full py-4 border-b border-gray-200 px-2">
+      {/* Logo on top */}
+      <div className="">
+        <Image src={logo} alt="Logo" width={120} height={60} className="h-auto" />
       </div>
 
       {/* Menu at bottom */}
       <div className="flex items-center justify-center space-x-6 mt-2">
         {menuItems.map((item) => (
-          <Link key={item.name} href={item.href} className="text-lg font-bold transition-colors hover:text-primary text-black">
+          <Link key={item.name} href={item.href} className={`text-lg font-bold transition-colors hover:text-primary text-black ${pathname == item.href ? "bg-black text-white" : ""}`}>
             {item.name}
           </Link>
         ))}
+      </div>
+
+      {/* Connect wallet button on right */}
+      <div className="">
+        <ConnectButton />
       </div>
     </nav>
   )
