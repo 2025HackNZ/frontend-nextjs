@@ -22,7 +22,7 @@ const config = getDefaultConfig({
     [mainnet.id]: http('https://eth-mainnet.g.alchemy.com/v2/JYWLuOthU8sE_RW4F18LDKQjtiUzugEw'),
     [sepolia.id]: http('https://eth-sepolia.g.alchemy.com/v2/JYWLuOthU8sE_RW4F18LDKQjtiUzugEw'),
   },
-  ssr: true,
+  // ssr: true,
 });
 
 export const Provider = ({children}: { children: React.ReactNode }) => {
