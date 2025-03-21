@@ -20,15 +20,10 @@ export default function Navbar({
   ]
 
   return (
-    <nav className="relative flex flex-col items-center w-full py-4 bg-white border-b border-gray-200">
+    <nav className="flex items-center justify-between w-full py-4 border-b border-gray-200 px-2">
       {/* Logo on top */}
-      <div className="mb-4">
-        <Image src={logo || '/next.svg'} alt="Logo" width={120} height={60} className="h-auto" />
-      </div>
-
-      {/* Connect wallet button on right */}
-      <div className="absolute right-4 top-1/2 -translate-y-1/2">
-        <ConnectButton />
+      <div className="">
+        <Image src={logo} alt="Logo" width={120} height={60} className="h-auto" />
       </div>
 
       {/* Menu at bottom */}
@@ -38,6 +33,11 @@ export default function Navbar({
             {item.name}
           </Link>
         ))}
+      </div>
+
+      {/* Connect wallet button on right */}
+      <div className="">
+        <ConnectButton />
       </div>
     </nav>
   )
