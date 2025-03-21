@@ -3,19 +3,31 @@
 import AmountInput from "../components/Input/Input";
 import { useState } from "react";
 import { parseEther } from "viem";
-import { useSendTransaction } from "wagmi";
+import { useAccount, useSendTransaction, useWriteContract } from "wagmi";
+import { writeContractMutationOptions } from "wagmi/query";
+import { abi, contractAddress } from "../utils/utils";
 
 export default function Home() {
   const [amount, setAmount] = useState("")
   const [balance, setBalance] = useState("1.25")
-  const { sendTransaction } = useSendTransaction()
+
+  const { writeContract } = useWriteContract()
+  const account = useAccount()
+
+  console.log("🚀 ~ Home ~ account:", account)
 
   const handleContribute = () => {
     // Handle contribution logic here
     console.log(`Contributing ${amount} ETH`)
     // You would typically connect this to your Web3 functionality
-    sendTransaction({
-      to: '0xd2135CfB216b74109775236E36d4b433F1DF507B',
+    // sendTransaction({
+    //   to: '0xd2135CfB216b74109775236E36d4b433F1DF507B',
+    //   value: parseEther(amount),
+    // })
+    writeContract({
+      abi: abi,
+      address: contractAddress,
+      functionName: 'deposit',
       value: parseEther(amount),
     })
   }
