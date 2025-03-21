@@ -4,6 +4,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 import "./globals.css";
 
 import Provider from "./providers";
+import Navbar from "../components/Navbar/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +30,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >
         <Provider>
+          <Navbar logo="/next.svg" />
           {children}
         </Provider>
       </body>
