@@ -60,9 +60,8 @@ export default function AmountInput({
           value={value}
           onChange={handleChange}
           placeholder={placeholder}
-          className={`pr-12 text-lg ${className} ${error ? "border-destructive" : ""}`}
+          className={`text-lg text-black ${className} ${error ? "border-destructive" : ""} p-3 w-full rounded-lg border border-gray-200 focus:outline-none focus:border-primary placeholder-gray-500`}
         />
-        <div className="absolute inset-y-0 right-3 flex items-center text-muted-foreground">ETH</div>
       </div>
       {error && <p className="mt-1 text-sm text-destructive">{error}</p>}
     </div>
