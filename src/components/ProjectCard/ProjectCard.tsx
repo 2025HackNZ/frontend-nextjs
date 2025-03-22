@@ -25,6 +25,14 @@ interface ProjectCardProps {
     impact: string
     activities: string[]
     votes?: number
+    proposalData?: {
+      description: string,
+      yesVotes: number,
+      endTime: any,
+      executed: boolean,
+      amount: number,
+      target: number
+    },
   }
   isMember?: boolean
   onVote?: () => void
@@ -62,6 +70,7 @@ export function ProjectCard({
         {/* Content section */}
         <div className="absolute bottom-0 left-0 right-0 p-6 bg-background">
           <h3 className="text-3xl font-semibold mb-2">{project.title}</h3>
+          <h5 className="text-lg font-semibold mb-2">Target: {project?.proposalData?.amount}</h5>
           <p className="text-gray-700 mb-4 text-sm line-clamp-2">{truncatedDescription}</p>
 
           {/* Progress Bar */}
@@ -81,7 +90,7 @@ export function ProjectCard({
                 onVote?.()
               }}
               className="bg-black text-white px-8 py-2 rounded-full hover:bg-gray-800 transition-colors text-xl"
-              // disabled={!isMember}
+              disabled={!isMember || project.proposalData?.executed}
             >
               Vote
             </Button>

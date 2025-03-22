@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 import { formatUnits, parseEther } from "viem"
 
 export default function Projects() {
-  const account = useAccount()
+  const { address, isConnected} = useAccount()
   const { writeContract, isPending, isSuccess, isError: isWriteError } = useWriteContract()
   const [isMember, setIsMember] = useState(false)
   const [contributions, setContributions] = useState(0)
@@ -25,7 +25,7 @@ export default function Projects() {
     abi: daoABI,
     address: daoContractAddress as `0x${string}`,
     functionName: "getMemberInfo",
-    args: [account.address as `0x${string}`]
+    args: [address as `0x${string}`]
   }) as any;
 
   const { data: deposits, refetch: refetchDeposits } = useReadContract({
@@ -44,10 +44,11 @@ export default function Projects() {
     contracts: projectsData.map((project) => ({
       address: daoContractAddress as `0x${string}`,
       abi: daoABI,
-      functionName: 'proposals',
+      functionName: 'getProposal',
       args: [BigInt(project.id)],
     })),
   } as any)
+    console.log("🚀 ~ Projects ~ proposalsData:", proposalsData)
 
   const handleVote = (projectId: number | string) => {
     writeContract({
@@ -115,13 +116,15 @@ export default function Projects() {
             executed: proposalData[3],
             amount: amount,
             target: proposalData[5]
-          }
+          },
+          executed: proposalData[3],
         };
       });
 
       setProjects((prevProjects: any) =>
         updatedProjects.map((newProject, index) => ({
           ...newProject,
+          voted: prevProjects[index]?.voted || newProject.voted
         }))
       );
     }
@@ -146,14 +149,18 @@ export default function Projects() {
   return (
     <div className="container mx-auto py-32 px-4 sm:px-6"> {/* Added horizontal padding */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            project={project}
-            isMember={isMember}
-            onVote={() => handleVote(project.id)}
-          />
-        ))}
+        {!isConnected ? (
+          <>Connect Wallet First</>
+        ) : (
+          projects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              isMember={isMember}
+              onVote={() => handleVote(project.id)}
+            />
+          ))
+        )}
       </div>
     </div>
   )
