@@ -6,25 +6,25 @@ export const partners = [
     projects: [
       {
         id: 101,
-        title: 'Kakapo Recovery Program',
-        description: "Supporting the recovery of one of New Zealand's most endangered birds through habitat restoration and breeding programs.",
+        title: 'Kākāpō Recovery Program',
+        description: "Reviving one of the world's rarest and most unique parrots through cutting-edge conservation efforts, habitat protection, and advanced breeding science.",
         image: '/PartnerImages/doc.png',
         organization: 'DOC NZ',
         funding: 12500,
         location: 'Codfish Island / Whenua Hou',
         status: 'In Progress',
-        achievements: 'Increasing the Kakapo population from 86 to 125 birds, creating 3 new predator-free habitats.'
+        achievements: 'Remarkably boosted the Kākāpō population from just 86 to 125 birds, established 3 predator-free sanctuaries, and pioneered new fertility techniques.'
       },
       {
         id: 102,
         title: 'Kiwi Habitat Restoration',
-        description: 'This project aims to restore natural habitats for kiwi birds in the Northland region. Activities include predator control, native planting, and community education.',
+        description: 'Breathing life back into Northland’s native forests to give the iconic kiwi bird a safe home, with predator control, habitat planting, and community-led protection.',
         image: '/PartnerImages/kiwi.jpeg',
         organization: 'DOC NZ',
         funding: 3500,
         location: 'Northland, NZ',
         status: 'In Progress',
-        achievements: 'Recent achievements include the successful release of 12 kiwi birds and the protection of 250 hectares of native bush.'
+        achievements: 'Successfully reintroduced 12 kiwi birds into restored habitats and safeguarded 250 hectares of precious native bushland.'
       }
     ]
   },
@@ -36,13 +36,13 @@ export const partners = [
       {
         id: 201,
         title: 'Native Forest Restoration',
-        description: 'Restoring degraded forest ecosystems through invasive species removal and native planting initiatives.',
+        description: 'Restoring ancient forest ecosystems, tackling invasive species, and planting the seeds for future generations of thriving wildlife.',
         image: '/PartnerImages/forest.webp',
         organization: 'Forest & Bird',
         funding: 9800,
         location: 'Waitakere Ranges',
         status: 'Active',
-        achievements: 'Planted 3,200 native trees and removed invasive species from 45 hectares of forest.'
+        achievements: 'Planted over 3,200 native trees, revitalized 45 hectares of forest, and created new safe havens for native species.'
       }
     ]
   },
@@ -54,13 +54,13 @@ export const partners = [
       {
         id: 301,
         title: 'Community Trapping Network',
-        description: 'Empowering local communities to protect native wildlife through predator control initiatives.',
+        description: 'Uniting passionate communities to defend native birds and wildlife by eliminating invasive predators.',
         image: '/PartnerImages/predator.jpg',
         organization: 'Predator Free NZ',
         funding: 7250,
         location: 'Wellington Region',
         status: 'Active',
-        achievements: 'Established 230 community trap lines and reduced predator populations by 67% in targeted areas.'
+        achievements: 'Launched 230 community trap lines, achieving a 67% reduction in predator numbers and building one of the strongest citizen-conservation networks in NZ.'
       }
     ]
   },
@@ -72,13 +72,13 @@ export const partners = [
       {
         id: 401,
         title: 'Kiwi Breeding Program',
-        description: 'Supporting kiwi hatching and rearing programs to boost wild populations of our national bird.',
+        description: 'Nurturing the next generation of kiwi birds from egg to release, ensuring this beloved icon continues to thrive in the wild.',
         image: '/PartnerImages/kiwis.jpeg',
         organization: 'Kiwis for Kiwi',
         funding: 6400,
         location: 'Northland',
         status: 'Active',
-        achievements: 'Successfully hatched and released 27 kiwi chicks with an 85% survival rate.'
+        achievements: 'Hatched and successfully released 27 kiwi chicks into protected areas, with an impressive 85% survival rate.'
       }
     ]
   },
@@ -90,13 +90,13 @@ export const partners = [
       {
         id: 501,
         title: 'Million Trees Initiative',
-        description: 'Planting native trees across New Zealand to combat climate change and enhance biodiversity.',
+        description: 'Building a greener future for Aotearoa by planting native trees across the country to fight climate change and restore biodiversity.',
         image: '/PartnerImages/Trees.jpg',
         organization: 'Trees That Count',
         funding: 5700,
         location: 'Nationwide',
         status: 'Active',
-        achievements: 'Planted 15,000 native trees across 12 regions with 4,000 volunteer participants.'
+        achievements: 'Planted over 15,000 native trees in 12 regions, with the help of 4,000 dedicated volunteers.'
       }
     ]
   },
@@ -108,13 +108,13 @@ export const partners = [
       {
         id: 601,
         title: 'Coastal Cleanup Network',
-        description: "Mobilizing volunteers to remove plastic pollution from New Zealand's beaches and waterways.",
+        description: "Tackling ocean pollution head-on by rallying volunteers to clean New Zealand’s coastlines and inspire environmental stewardship.",
         image: '/PartnerImages/coastline.jpg',
         organization: 'Sustainable Coastlines',
         funding: 4900,
         location: 'Coastal New Zealand',
         status: 'Active',
-        achievements: 'Removed 15 tonnes of plastic waste from 47 beaches and trained 230 cleanup volunteers.'
+        achievements: 'Removed over 15 tonnes of plastic waste from 47 beaches and trained 230 passionate cleanup leaders.'
       }
     ]
   }

@@ -45,5 +45,6 @@ body {
 main {
   /* background: var(--background); */
   padding-top: var(--header-height);
+  padding-bottom: var(--footer-height);
   @apply max-w-screen-lg;
 }
