@@ -5,13 +5,12 @@ import { projects as projectsData } from "@/app/constants/projectData"
 import { useAccount, useReadContract, useReadContracts, useWriteContract } from "wagmi"
 import { daoABI, daoContractAddress, nzddDigits } from "../../utils/utils"
 import { useEffect, useState } from "react"
-import { formatUnits, parseEther } from "viem"
+import { formatUnits } from "viem"
 
 export default function Projects() {
   const { address, isConnected} = useAccount()
-  const { writeContract, isPending, isSuccess, isError: isWriteError } = useWriteContract()
+  const { writeContract, isSuccess } = useWriteContract()
   const [isMember, setIsMember] = useState(false)
-  const [contributions, setContributions] = useState(0)
   const [projects, setProjects] = useState(
     projectsData.map(project => ({
       ...project,
@@ -21,7 +20,7 @@ export default function Projects() {
   )
 
   // Get member info
-  const { data: memberInfo, error: memberError, refetch: refetchMemberInfo } = useReadContract({
+  const { data: memberInfo, refetch: refetchMemberInfo } = useReadContract({
     abi: daoABI,
     address: daoContractAddress as `0x${string}`,
     functionName: "getMemberInfo",
@@ -36,8 +35,6 @@ export default function Projects() {
 
   const {
     data: proposalsData,
-    isError: isProposalsError,
-    isLoading: isProposalsLoading,
     refetch: refetchProposals
   } = useReadContracts({
     contracts: projectsData.map((project) => ({
@@ -114,9 +111,6 @@ export default function Projects() {
         
         console.log("🚀 ~ updatedProjects ~ progress:", progress)
 
-        // Calculate threshold needed to pass
-        const threshold = totalVotingPower * 0.51;
-
         return {
           ...project,
           progress: progress,
@@ -142,6 +136,7 @@ export default function Projects() {
       setProjects((prevProjects: any) =>
         updatedProjects.map((newProject, index) => ({
           ...newProject,
+          votes: newProject.votes || 0, // Ensure votes property is always present
           voted: prevProjects[index]?.voted || newProject.voted
         }))
       );
@@ -151,7 +146,6 @@ export default function Projects() {
   useEffect(() => {
     if(memberInfo) {
       const depositAmount = Number(formatUnits(memberInfo[0], nzddDigits));
-      setContributions(depositAmount);
       setIsMember(depositAmount > 0);
     }
   }, [memberInfo])

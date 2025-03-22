@@ -22,7 +22,8 @@ export const projects = [
       "Native tree planting",
       "Community education and engagement"
     ],
-    voted: false
+    voted: false,
+    votes: 0,
   },
   {
     id: 1,
@@ -47,7 +48,8 @@ export const projects = [
       "Education programs for local businesses",
       "Sustainable tourism initiatives"
     ],
-    voted: false
+    voted: false,
+    votes: 0,
   },
   {
     id: 2,
@@ -72,6 +74,7 @@ export const projects = [
       "Visitor education programs",
       "Climate adaptation strategies"
     ],
-    voted: false
+    voted: false,
+    votes: 0,
   }
 ];

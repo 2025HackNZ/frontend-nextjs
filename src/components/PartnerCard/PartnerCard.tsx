@@ -5,7 +5,7 @@ import { partners } from '@/app/constants/partnerData'
 import Image from 'next/image'
 
 interface Project {
-  id: string
+  id: number
   title: string
   description: string
   image: string
@@ -16,6 +16,10 @@ interface Project {
   donationTarget: number
   treesPlanted: number
   goal: string
+  organization: string
+  funding: number
+  location: string
+  status: string
 }
 
 export default function PartnerCard({ partnerId }: { partnerId: string }) {
