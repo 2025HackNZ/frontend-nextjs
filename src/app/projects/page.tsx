@@ -9,7 +9,7 @@ import { useEffect, useState } from "react"
 import { formatUnits } from "viem"
 
 export default function Projects() {
-  const { address, isConnected} = useAccount()
+  const { address } = useAccount()
   const { writeContract, isSuccess } = useWriteContract()
   const [isMember, setIsMember] = useState(false)
   const [projects, setProjects] = useState(

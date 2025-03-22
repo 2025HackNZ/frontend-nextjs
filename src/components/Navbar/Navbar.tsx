@@ -4,9 +4,10 @@ import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ConnectButton } from "@rainbow-me/rainbowkit"
+import { ConnectButton, useConnectModal } from "@rainbow-me/rainbowkit"
 import { useContributeModal } from "@/context/ContributeModalProvider"
 import { ContributeBox } from "@/components/ContributeBox/ContributeBox"
+import { useAccount } from "wagmi"
 
 interface NavbarProps {
   logo: string
@@ -20,6 +21,8 @@ export default function Navbar({
     { name: "Partners", href: "/partners" },
     { name: "Sponsors", href: "/sponsors" },
   ]
+  const { isConnected } = useAccount()
+  const { openConnectModal } = useConnectModal();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -39,6 +42,15 @@ export default function Navbar({
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [])
+
+  const handleContribute = () => {
+    if (isConnected) {
+      openModal(<ContributeBox />)
+    } else {
+      // Handle contribution logic
+      openConnectModal?.()
+    }
+  }
 
   return (
     <nav className="fixed flex items-center justify-between w-full py-4 border-b border-gray-200 px-2 bg-background z-10">
@@ -62,7 +74,7 @@ export default function Navbar({
             {item.name}
           </Link>
         ))}
-        <button className="bg-secondary rounded-md px-4 py-0.5 text-white font-bold" onClick={() => { openModal(<ContributeBox />) }}>Contribute</button>
+        <button className="bg-secondary rounded-md px-4 py-0.5 text-white font-bold" onClick={() => handleContribute()}>Contribute</button>
         {/* Custom Connect wallet button */}
         <div className="relative" ref={dropdownRef}>
           <ConnectButton.Custom>
