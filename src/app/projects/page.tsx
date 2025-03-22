@@ -33,7 +33,6 @@ export default function Projects() {
     address: daoContractAddress as `0x${string}`,
     functionName: "totalDeposits",
   }) as any;
-  console.log("🚀 ~ Projects ~ deposits:", deposits)
 
   const {
     data: proposalsData,
@@ -72,6 +71,7 @@ export default function Projects() {
 
     return y;
   }
+  console.log("🚀 ~ updatedProjects ~ deposits:", deposits)
 
   useEffect(() => {
     if (proposalsData && proposalsData.length > 0) {
@@ -86,15 +86,33 @@ export default function Projects() {
 
         // Calculate current funding based on blockchain data
         // Assuming amount represents total funding needed and votes are the progress towards it
-        const yesVotes = Number(proposalData[1]);
-        const amount = Number(formatUnits(proposalData[4], nzddDigits));
+        // Get raw values from the contract (as BigInt)
+        const yesVotesBigInt = proposalData[1];
+        const amountBigInt = proposalData[4];
+        const totalDepositsBigInt = deposits;
 
-        const totalVotingPower = sqrt(Number(formatUnits(deposits, nzddDigits)));
+        // Convert to numbers - use Number() for direct conversion if values aren't too large
+        // or use formatUnits with the correct number of decimals
+        const yesVotes = Number(yesVotesBigInt); // Or use formatUnits if needed
+        const amount = Number(formatUnits(amountBigInt, nzddDigits));
+        const totalDepositsNum = Number(totalDepositsBigInt); // Or use formatUnits if needed
 
+        console.log("Yes Votes:", yesVotes);
+        console.log("Total Deposits:", totalDepositsNum);
+        
+        // Calculate total voting power using the square root function
+        const totalVotingPower = sqrt(totalDepositsNum);
+        console.log("Total Voting Power:", totalVotingPower);
+        
         // Calculate current percentage of voting power
-        // In the contract, a proposal needs 51% to pass
         const currentPercentage = (yesVotes / totalVotingPower) * 100;
+        console.log("Current Percentage:", currentPercentage);
+        
+        // Calculate the progress (capped at 100%)
         const progress = Math.min(Math.round(currentPercentage), 100);
+        console.log("Progress:", progress);
+        
+        console.log("🚀 ~ updatedProjects ~ progress:", progress)
 
         // Calculate threshold needed to pass
         const threshold = totalVotingPower * 0.51;
