@@ -2,10 +2,11 @@
 'use client'
 
 import { useState } from "react";
-import { parseEther } from "viem";
+import { parseUnits } from "viem";
 import { useAccount, useBalance, useSendTransaction, useWriteContract } from "wagmi";
 import { writeContractMutationOptions } from "wagmi/query";
-import { abi, contractAddress } from "../../utils/utils";
+import { sepolia } from 'wagmi/chains';
+import { erc20ABI, daoABI, daoContractAddress, nzddContractAddress, nzddDigits } from "../../utils/utils";
 import AmountInput from "../Input/Input";
 
 export function ContributeBox() {
@@ -16,6 +17,8 @@ export function ContributeBox() {
   const { address, isConnected } = useAccount()
   const { data, isError, isLoading } = useBalance({
     address,
+    token: nzddContractAddress,
+    chainId: sepolia.id,
   });
 
   const handleContribute = () => {
@@ -24,34 +27,73 @@ export function ContributeBox() {
     // You would typically connect this to your Web3 functionality
     // sendTransaction({
     //   to: '0xd2135CfB216b74109775236E36d4b433F1DF507B',
-    //   value: parseEther(amount),
+    //   value: parseUnits(amount),
     // })
     writeContract({
-      abi: abi,
-      address: contractAddress,
+      abi: erc20ABI,
+      address: nzddContractAddress,
+      functionName: 'approve',
+      args: [
+        daoContractAddress,
+        parseUnits(amount, nzddDigits),
+      ],
+    })
+    writeContract({
+      abi: daoABI,
+      address: daoContractAddress,
       functionName: 'deposit',
-      value: parseEther(amount),
+      args: [
+        parseUnits(amount, nzddDigits),
+      ]
     })
   }
 
   return (
-    <div className="flex flex-col w-full p-4 border border-gray bg-white">
-      <p className="text-black font-bold">Contribute ETH</p>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault(); // Prevent default form submission
+        handleContribute(); // Call your contribute function
+      }}
+      className="flex flex-col w-full p-4 border border-gray bg-white"
+    >
+      <p className="text-black font-bold">Contribute NZDD</p>
       <div className="h-2" />
+
       <AmountInput
         value={amount}
         balance={isConnected ? `${data?.formatted} ${data?.symbol}` : undefined}
         placeholder="Enter amount to contribute"
         onChange={setAmount}
       />
+
       <div className="h-4" />
+
       <button
-        onClick={() => handleContribute()}
-        className="py-4 px-6 text-lg bg-black text-white rounded-lg max-w-[300px] w-auto"
+        type="submit" // Makes it trigger on Enter key
+        className="bg-secondary rounded-md px-4 py-0.5 text-white font-bold"
         // disabled={!amount || Number(amount) <= 0 || Number(amount) > Number(balance)}
       >
         Contribute
       </button>
-    </div>
+    </form>
   );
 }
+
+    // <div className="flex flex-col w-full p-4 border border-gray bg-white">
+    //   <p className="text-black font-bold">Contribute NZDD</p>
+    //   <div className="h-2" />
+    //   <AmountInput
+    //     value={amount}
+    //     balance={isConnected ? `${data?.formatted} ${data?.symbol}` : undefined}
+    //     placeholder="Enter amount to contribute"
+    //     onChange={setAmount}
+    //   />
+    //   <div className="h-4" />
+    //   <button
+    //     onClick={() => handleContribute()}
+    //     className="bg-secondary rounded-md px-4 py-0.5 text-white font-bold"
+    //     // disabled={!amount || Number(amount) <= 0 || Number(amount) > Number(balance)}
+    //   >
+    //     Contribute
+    //   </button>
+    // </div>
