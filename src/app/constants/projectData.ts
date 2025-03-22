@@ -1,7 +1,7 @@
 export const projects = [
   {
     id: 0,
-    title: "Wild Life Taupo",
+    title: "Wild Life Taupō",
     description: "Creating protected habitats for native waterfowl and migratory birds around Lake Taupō's shoreline and wetlands, with a focus on preserving endangered species and restoring natural ecosystems.",
     image: "/projects/wild-life-taupo.jpeg",
     progress: 50,
