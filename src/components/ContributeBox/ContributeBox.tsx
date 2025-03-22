@@ -40,7 +40,7 @@ export default function ContributeBox() {
       <div className="h-2" />
       <AmountInput
         value={amount}
-        balance={isConnected ? `${data?.formatted} ${data?.symbol}` : undefined}
+        // balance={isConnected ? `${data?.formatted} ${data?.symbol}` : undefined}
         placeholder="Enter amount to contribute"
         onChange={setAmount}
       />
