@@ -9,13 +9,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // primary: "rgb(var(--color-primary) / <alpha-value>)",
-        // secondary: "rgb(var(--color-secondary) / <alpha-value>)",
+        primary: "rgb(var(--color-primary) / <alpha-value>)",
+        secondary: "rgb(var(--color-secondary) / <alpha-value>)",
         // body: "rgb(var(--color-body) / <alpha-value>)",
         background: "rgb(var(--color-background) / <alpha-value>)",
         foreground: "rgb(var(--color-foreground) / <alpha-value>)",
         // highlight: "rgb(var(--color-highlight) / <alpha-value>)",
-        // muted: "rgb(var(--color-muted) / <alpha-value>)",
+        muted: "rgb(var(--color-muted) / <alpha-value>)",
         // accent: "rgb(var(--color-accent) / <alpha-value>)",
         // danger: "rgb(var(--color-danger) / <alpha-value>)",
         // success: "rgb(var(--color-success) / <alpha-value>)",

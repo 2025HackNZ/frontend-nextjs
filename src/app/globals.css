@@ -3,8 +3,11 @@
 :root {
   --header-height: 72px;
   --app-width: 1200px;
+  --primary: #879d3b;
+  --secondary: #c5a460;
   --background: #fff6df;
-  --foreground: #171717;
+  --foreground: #252728;
+  --muted: #ccd4c8;
 }
 
 @theme inline {
