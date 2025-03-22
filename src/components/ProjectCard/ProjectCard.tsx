@@ -92,7 +92,7 @@ export function ProjectCard({
               className="bg-black text-white px-8 py-2 rounded-full hover:bg-gray-800 transition-colors text-xl"
               disabled={!isMember || project.proposalData?.executed}
             >
-              Vote
+              {project.proposalData?.executed ? "Executed" : "Vote"}
             </Button>
             <Image src={project.iconImage} width={40} height={40} alt="type icon" />
           </div>

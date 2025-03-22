@@ -114,7 +114,7 @@ export default function Projects() {
 
         return {
           ...project,
-          progress: progress,
+          progress: isNaN(progress) ? 0 : progress,
           votes: yesVotes,
           // Keep the existing voted status to maintain UI state between refreshes
           voted: project.voted || false,
