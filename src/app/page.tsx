@@ -3,9 +3,23 @@ import Image from 'next/image'
 import { successStories } from '@/app/constants/storiesData'
 import { useContributeModal } from '../context/ContributeModalProvider';
 import { ContributeBox } from '../components/ContributeBox/ContributeBox';
+import { injected, useAccount, useConnect } from 'wagmi';
+import { useConnectModal } from '@rainbow-me/rainbowkit';
 
 export default function HomePage() {
   const { openModal } = useContributeModal()
+  const { isConnected } = useAccount()
+  const { openConnectModal } = useConnectModal();
+
+
+  const handleContribute = () => {
+    if (isConnected) {
+      openModal(<ContributeBox />)
+    } else {
+      // Handle contribution logic
+      openConnectModal?.()
+    }
+  }
   
   return (
     <div className="min-h-screen bg-cream">
@@ -25,7 +39,7 @@ export default function HomePage() {
                   Koru is a New Zealand-based conservation platform dedicated to restoring and protecting our land and wildlife. Inspired by the iconic spiral fern, symbolizing new life and growth, Koru directly connects contributors with verified conservation projects across Aotearoa. Our transparent governance model ensures that every contribution is efficiently allocated, preventing stagnation and driving real-world impact. By channeling global investment into ethical and sustainable initiatives, Koru reinvests into local communities, strengthens New Zealand&apos;s clean and green legacy, and fosters a future where conservation and progress go hand in hand.
                 </p>
               </div>
-              <button onClick={() => openModal(<ContributeBox />)} className="bg-[#c5a460] text-white border-2 border-[#c5a460] px-10 py-4 rounded-md hover:bg-[#b39355] hover:border-[#b39355] transition-colors text-lg font-medium">
+              <button onClick={() => handleContribute()} className="bg-[#c5a460] text-white border-2 border-[#c5a460] px-10 py-4 rounded-md hover:bg-[#b39355] hover:border-[#b39355] transition-colors text-lg font-medium">
                 Start Contributing
               </button>
             </div>
