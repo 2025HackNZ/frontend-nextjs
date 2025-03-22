@@ -3,8 +3,11 @@
 :root {
   --header-height: 72px;
   --app-width: 1200px;
+  --primary: #879d3b;
+  --secondary: #c5a460;
   --background: #fff6df;
-  --foreground: #171717;
+  --foreground: #252728;
+  --muted: #ccd4c8;
 }
 
 @theme inline {
@@ -14,12 +17,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   margin: 0;
@@ -31,4 +34,5 @@ body {
 
 main {
   padding-top: var(--header-height);
+  @apply max-w-screen-lg;
 }

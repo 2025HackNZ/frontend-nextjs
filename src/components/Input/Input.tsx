@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 
 interface AmountInputProps {
   value: string
+  balance?: string
   onChange: (value: string) => void
   placeholder?: string
   min?: number
@@ -15,6 +16,7 @@ interface AmountInputProps {
 
 export default function AmountInput({
   value,
+  balance,
   onChange,
   placeholder = "Enter amount",
   min = 0,
@@ -60,8 +62,11 @@ export default function AmountInput({
           value={value}
           onChange={handleChange}
           placeholder={placeholder}
-          className={`text-lg text-black ${className} ${error ? "border-destructive" : ""} p-3 w-full rounded-lg border border-gray-200 focus:outline-none focus:border-primary placeholder-gray-500`}
+          className={`text-lg text-black ${className} ${error ? "border-destructive" : ""} p-3 w-full rounded-lg border border-gray-200 focus:outline-none focus:border-primary placeholder-gray-500 bg-white`}
         />
+        {/* {balance &&
+          <p className="text-sm text-muted-foreground text-right text-black">Balance: {balance}</p>
+        } */}
       </div>
       {error && <p className="mt-1 text-sm text-destructive">{error}</p>}
     </div>
