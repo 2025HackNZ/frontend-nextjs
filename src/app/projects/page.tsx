@@ -3,7 +3,7 @@ import * as React from "react"
 import Link from "next/link";
 import { ProjectCard } from "@/components/ProjectCard/ProjectCard"
 import { projects as projectsData } from "@/app/constants/projectData"
-import { useAccount, useReadContract, useReadContracts, useWriteContract } from "wagmi"
+import { useAccount, useReadContract, useReadContracts, useWatchContractEvent, useWriteContract } from "wagmi"
 import { daoABI, daoContractAddress, nzddDigits } from "../../utils/utils"
 import { useEffect, useState } from "react"
 import { formatUnits } from "viem"
@@ -11,6 +11,18 @@ import { formatUnits } from "viem"
 export default function Projects() {
   const { address } = useAccount()
   const { writeContract, isSuccess } = useWriteContract()
+
+  useWatchContractEvent({
+    address: daoContractAddress as `0x${string}`,
+    abi: daoABI,
+    eventName: 'Deposited',
+    onLogs() {
+      refetchProposals()
+      refetchDeposits()
+      refetchMemberInfo()
+    },
+  })
+
   const [isMember, setIsMember] = useState(false)
   const [projects, setProjects] = useState(
     projectsData.map(project => ({
