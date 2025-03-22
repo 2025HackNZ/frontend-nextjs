@@ -1,8 +1,12 @@
 "use client"
 import Image from 'next/image'
 import { successStories } from '@/app/constants/storiesData'
+import { useContributeModal } from '../context/ContributeModalProvider';
+import { ContributeBox } from '../components/ContributeBox/ContributeBox';
 
 export default function HomePage() {
+  const { openModal } = useContributeModal()
+  
   return (
     <div className="min-h-screen bg-cream">
       <div className="max-w-7xl mx-auto px-6 py-12">
@@ -21,7 +25,7 @@ export default function HomePage() {
                   Koru is a New Zealand-based conservation platform dedicated to restoring and protecting our land and wildlife. Inspired by the iconic spiral fern, symbolizing new life and growth, Koru directly connects contributors with verified conservation projects across Aotearoa. Our transparent governance model ensures that every contribution is efficiently allocated, preventing stagnation and driving real-world impact. By channeling global investment into ethical and sustainable initiatives, Koru reinvests into local communities, strengthens New Zealand&apos;s clean and green legacy, and fosters a future where conservation and progress go hand in hand.
                 </p>
               </div>
-              <button className="bg-[#c5a460] text-white border-2 border-[#c5a460] px-10 py-4 rounded-md hover:bg-[#b39355] hover:border-[#b39355] transition-colors text-lg font-medium">
+              <button onClick={() => openModal(<ContributeBox />)} className="bg-[#c5a460] text-white border-2 border-[#c5a460] px-10 py-4 rounded-md hover:bg-[#b39355] hover:border-[#b39355] transition-colors text-lg font-medium">
                 Start Contributing
               </button>
             </div>
