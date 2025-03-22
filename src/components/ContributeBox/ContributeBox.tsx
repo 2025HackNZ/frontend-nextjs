@@ -36,18 +36,18 @@ export default function ContributeBox() {
 
   return (
     <div className="flex flex-col w-full p-4 border border-gray">
-      <p className="text-black font-bold">Contribute NZDD</p>
+      <p className="text-black font-bold">Contribute ETH</p>
       <div className="h-2" />
       <AmountInput
         value={amount}
-        // balance={isConnected ? `${data?.formatted} ${data?.symbol}` : undefined}
+        balance={isConnected ? `${data?.formatted} ${data?.symbol}` : undefined}
         placeholder="Enter amount to contribute"
         onChange={setAmount}
       />
       <div className="h-4" />
       <button
         onClick={() => handleContribute()}
-        className="w-full py-6 text-lg bg-black text-white rounded-lg"
+        className="py-4 px-6 text-lg bg-black text-white rounded-lg max-w-[300px] w-auto"
         // disabled={!amount || Number(amount) <= 0 || Number(amount) > Number(balance)}
       >
         Contribute
