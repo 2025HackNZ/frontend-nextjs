@@ -8,6 +8,7 @@ import "./globals.css";
 import Provider from "./providers";
 import Navbar from "../components/Navbar/Navbar";
 import { ContributeModal } from "@/components/ContributeModal/ContributeModal"
+import Footer from "../components/Footer/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,6 +47,7 @@ export default function RootLayout({
           {children}
           <ContributeModal />
 
+          <Footer />
         </Provider>
       </body>
     </html>

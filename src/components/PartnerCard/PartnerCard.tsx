@@ -1,9 +1,9 @@
 "use client"
 import React, { useState } from 'react'
-import Button from '@/components/Button/Button'
 import { PartnerModal } from '@/components/Modal/PartnerModal/PartnerModal'
 import { partners } from '@/app/constants/partnerData'
 import Image from 'next/image'
+
 interface Project {
   id: string
   title: string
@@ -22,13 +22,11 @@ export default function PartnerCard({ partnerId }: { partnerId: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   
-  // Find the partner by ID
   const partner = partners.find(p => p.id === parseInt(partnerId))
   
   if (!partner) return null
   
   const handleViewProjects = () => {
-    // Default to the first project
     setSelectedProject(partner.projects[0] as unknown as Project)
     setIsModalOpen(true)
   }
@@ -40,18 +38,23 @@ export default function PartnerCard({ partnerId }: { partnerId: string }) {
   return (
     <>
       <div 
-        className="flex flex-col items-center p-4 bg-gray-50 rounded-full aspect-square border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer"
+        className="flex flex-col bg-white rounded-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer overflow-hidden"
         onClick={handleViewProjects}
       >
-        <div className="flex flex-col items-center justify-center w-full h-full">
-          <div className="rounded-full w-full h-full relative">
-            <Image 
-              src={partner.projects[0].image}
-              alt={partner.name} 
-              fill
-              className="rounded-full object-cover"
-            />
-          </div>
+        {/* Image section */}
+        <div className="w-full h-48 relative">
+          <Image 
+            src={partner.projects[0].image}
+            alt={partner.name} 
+            fill
+            className="object-cover"
+          />
+        </div>
+        
+        {/* Info section */}
+        <div className="p-4 text-center">
+          <h3 className="font-semibold text-lg mb-2">{partner.name}</h3>
+          <p className="text-green-600 font-medium">{partner.amount} NZDD</p>
         </div>
       </div>
       

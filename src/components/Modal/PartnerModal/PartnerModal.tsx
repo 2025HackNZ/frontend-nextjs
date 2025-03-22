@@ -40,7 +40,7 @@ export function PartnerModal({ isOpen, onClose, project }: PartnerModalProps) {
                   alt={project?.title || ""}
                   width={800}
                   height={600}
-                  className="object-cover w-full h-full"
+                  className="object-contain w-full h-full"
                 />
               </div>
             </div>
