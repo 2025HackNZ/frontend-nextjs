@@ -64,9 +64,9 @@ export default function AmountInput({
           placeholder={placeholder}
           className={`text-lg text-black ${className} ${error ? "border-destructive" : ""} p-3 w-full rounded-lg border border-gray-200 focus:outline-none focus:border-primary placeholder-gray-500 bg-white`}
         />
-        {balance &&
+        {/* {balance &&
           <p className="text-sm text-muted-foreground text-right text-black">Balance: {balance}</p>
-        }
+        } */}
       </div>
       {error && <p className="mt-1 text-sm text-destructive">{error}</p>}
     </div>

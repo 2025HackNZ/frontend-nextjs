@@ -22,7 +22,7 @@ export default function Navbar({
   const pathname = usePathname(); // e.g., "/dashboard/settings"
 
   return (
-    <nav className="fixed flex items-center justify-between w-full py-4 border-b border-gray-200 px-2 bg-white">
+    <nav className="fixed flex items-center justify-between w-full py-4 border-b border-gray-200 px-2">
       {/* Logo on top */}
       <div className="">
         <Image src={logo} alt="Logo" width={120} height={60} className="h-auto" />
