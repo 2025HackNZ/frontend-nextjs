@@ -19,14 +19,14 @@ export function ContributeBox() {
     chainId: sepolia.id,
   });
 
-  const handleContribute = async () => {
+  const handleContribute = () => {
     if (!amount) return;
 
     try {
       setIsPending(true); // Disable button and show loading state
 
       // Approve tokens
-      await writeContract({
+      writeContract({
         abi: erc20ABI,
         address: nzddContractAddress,
         functionName: "approve",
@@ -34,7 +34,7 @@ export function ContributeBox() {
       });
 
       // Deposit tokens
-      await writeContract({
+      writeContract({
         abi: daoABI,
         address: daoContractAddress,
         functionName: "deposit",

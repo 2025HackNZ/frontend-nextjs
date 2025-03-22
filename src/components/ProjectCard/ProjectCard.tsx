@@ -31,34 +31,34 @@ interface ProjectCardProps {
   className?: string
 }
 
-export function ProjectCard({ 
+export function ProjectCard({
   project,
-  onVote, 
+  onVote,
   isMember,
-  className = "" 
+  className = ""
 }: ProjectCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const truncatedDescription = project.description.length > 100 
+  const truncatedDescription = project.description.length > 100
     ? project.description.slice(0, 100) + "..."
     : project.description
 
   return (
     <>
-      <div 
+      <div
         onClick={() => setIsModalOpen(true)}
         className={`relative h-[600px] rounded-3xl overflow-hidden shadow-md border border-muted cursor-pointer hover:shadow-lg transition-shadow ${className}`}
       >
         {/* Image positioned above content */}
         <div className="h-2/3 relative">
-          <Image 
-            src={project.image} 
+          <Image
+            src={project.image}
             alt={project.title}
             fill
             className="object-cover"
             priority
           />
         </div>
-        
+
         {/* Content section */}
         <div className="absolute bottom-0 left-0 right-0 p-6 bg-background">
           <h3 className="text-3xl font-semibold mb-2">{project.title}</h3>
@@ -75,13 +75,13 @@ export function ProjectCard({
           />
 
           <div className="flex justify-between items-center">
-            <Button 
+            <Button
               onClick={(e) => {
                 e.stopPropagation()
                 onVote?.()
               }}
               className="bg-black text-white px-8 py-2 rounded-full hover:bg-gray-800 transition-colors text-xl"
-              disabled={!isMember}
+              // disabled={!isMember}
             >
               Vote
             </Button>
