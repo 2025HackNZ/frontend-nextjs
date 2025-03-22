@@ -162,7 +162,7 @@ export default function Projects() {
   return (
     <div className="container mx-auto py-32 px-4 sm:px-6"> {/* Added horizontal padding */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <h3 className="text-3xl font-bold text-gray-800 mb-6">Total Contributions: ${isConnected && deposits && formatUnits(deposits, nzddDigits)}</h3>
+        <h3 className="text-3xl font-bold text-gray-800 mb-6">Total Contributions: ${deposits && formatUnits(deposits, nzddDigits)}</h3>
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
