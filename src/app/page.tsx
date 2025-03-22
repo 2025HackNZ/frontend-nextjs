@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { successStories } from '@/app/constants/storiesData'
 import { useContributeModal } from '../context/ContributeModalProvider';
 import { ContributeBox } from '../components/ContributeBox/ContributeBox';
-import { injected, useAccount, useConnect } from 'wagmi';
+import { useAccount } from 'wagmi';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 
 export default function HomePage() {
