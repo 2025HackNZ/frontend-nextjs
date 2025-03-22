@@ -118,7 +118,7 @@ export default function ProfilePage() {
   return (
     <div className="mx-auto max-w-screen-lg px-4 py-6 bg-[var(--color-background)] pt-40">
       {/* Profile Header */}
-      <div className="bg-background rounded-lg p-8 shadow-md mb-8">
+      <div className="bg-background rounded-lg p-8 shadow-md mb-8 bg-white">
         <div className="flex flex-col md:flex-row">
           <div className="w-32 h-32 bg-green-400 rounded-full flex-shrink-0" />
           
@@ -200,7 +200,7 @@ export default function ProfilePage() {
         <div className="space-y-4">
           {activeTab === 'contributions' && 
             profileData.contributions.map((item, index) => (
-              <div key={index} className="flex p-4 border border-gray-200 rounded-lg">
+              <div key={index} className="flex p-4 border border-gray-200 rounded-lg bg-white">
                 <div className="w-16 h-16 bg-gray-100 rounded-lg mr-4 flex-shrink-0" />
                 <div className="flex-1">
                   <h3 className="font-bold text-gray-800 mb-1">{item.title}</h3>
@@ -223,7 +223,7 @@ export default function ProfilePage() {
           
           {activeTab === 'votes' && 
             profileData.votes.map((item, index) => (
-              <div key={index} className="flex p-4 border border-gray-200 rounded-lg">
+              <div key={index} className="flex p-4 border border-gray-200 rounded-lg bg-white">
                 <div className="w-16 h-16 bg-gray-100 rounded-lg mr-4 flex-shrink-0" />
                 <div className="flex-1">
                   <h3 className="font-bold text-gray-800 mb-1">{item.title}</h3>
