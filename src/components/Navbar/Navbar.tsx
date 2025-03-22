@@ -38,7 +38,7 @@ export default function Navbar({
   }, [])
 
   return (
-    <nav className="fixed flex items-center justify-between w-full py-4 border-b border-gray-200 px-2 bg-[var(--color-background)] z10">
+    <nav className="fixed flex items-center justify-between w-full py-4 border-b border-gray-200 px-2 bg-background z10">
       {/* Logo */}
       <div>
         <Image src={logo} alt="Logo" width={120} height={60} className="h-auto" />
@@ -47,9 +47,9 @@ export default function Navbar({
       {/* Menu items */}
       <div className="flex items-center justify-center space-x-6 mt-2">
         {menuItems.map((item) => (
-          <Link 
-            key={item.name} 
-            href={item.href} 
+          <Link
+            key={item.name}
+            href={item.href}
             className={`text-lg font-bold transition-colors hover:text-primary text-black px-4 rounded-md ${
               pathname === item.href ? "bg-secondary text-white" : ""
             }`}
@@ -85,8 +85,8 @@ export default function Navbar({
                   {(() => {
                     if (!connected) {
                       return (
-                        <button 
-                          onClick={openConnectModal} 
+                        <button
+                          onClick={openConnectModal}
                           type="button"
                           className="bg-green-400 hover:bg-green-500 text-white font-medium py-2 px-4 rounded-lg transition-colors"
                         >
@@ -97,8 +97,8 @@ export default function Navbar({
 
                     if (chain.unsupported) {
                       return (
-                        <button 
-                          onClick={openChainModal} 
+                        <button
+                          onClick={openChainModal}
                           type="button"
                           className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors"
                         >
@@ -130,7 +130,7 @@ export default function Navbar({
                                 </div>
                               </div>
                             </div>
-                            
+
                             {/* Menu options */}
                             <div className="py-2">
                               <a href="/profile" className="flex items-center px-4 py-3 hover:bg-gray-100 transition-colors">
@@ -141,7 +141,7 @@ export default function Navbar({
                                 </div>
                                 <span className="text-gray-700">View Profile</span>
                               </a>
-                              
+
                               <a href="/" className="flex items-center px-4 py-3 hover:bg-gray-100 transition-colors">
                                 <div className="text-yellow-600 mr-3">
                                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -151,7 +151,7 @@ export default function Navbar({
                                 </div>
                                 <span className="text-gray-700">Add NZDD Funds</span>
                               </a>
-                              
+
                               <a href="#" className="flex items-center px-4 py-3 hover:bg-gray-100 transition-colors">
                                 <div className="text-red-600 mr-3">
                                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -160,8 +160,8 @@ export default function Navbar({
                                 </div>
                                 <span className="text-gray-700">Help Center</span>
                               </a>
-                              
-                              <button 
+
+                              <button
                                 onClick={openAccountModal}
                                 className="w-full text-left flex items-center px-4 py-3 hover:bg-gray-100 transition-colors"
                               >

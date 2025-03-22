@@ -32,12 +32,13 @@
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--background);
+  /* background: var(--background); */
   color: var(--foreground);
   font-family: var(--font-custom);
 }
 
 main {
+  /* background: var(--background); */
   padding-top: var(--header-height);
   @apply max-w-screen-lg;
 }
