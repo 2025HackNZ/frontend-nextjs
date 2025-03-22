@@ -11,6 +11,7 @@ import {
   mainnet,
   sepolia
 } from 'wagmi/chains';
+import { ContributeModalProvider } from '@/context/ContributeModalProvider';
 
 const queryClient = new QueryClient();
 
@@ -30,7 +31,9 @@ export const Provider = ({children}: { children: React.ReactNode }) => {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider >
-          {children}
+          <ContributeModalProvider>
+            {children}
+          </ContributeModalProvider>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>

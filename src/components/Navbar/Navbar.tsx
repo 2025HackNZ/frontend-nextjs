@@ -5,6 +5,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
+import { useContributeModal } from "@/context/ContributeModalProvider"
+import { ContributeBox } from "@/components/ContributeBox/ContributeBox"
 
 interface NavbarProps {
   logo: string
@@ -22,6 +24,7 @@ export default function Navbar({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
+  const { openModal } = useContributeModal()
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -57,6 +60,7 @@ export default function Navbar({
             {item.name}
           </Link>
         ))}
+        <button onClick={() => { openModal(<ContributeBox />) }}>Contribute</button>
         {/* Custom Connect wallet button */}
         <div className="relative" ref={dropdownRef}>
           <ConnectButton.Custom>
