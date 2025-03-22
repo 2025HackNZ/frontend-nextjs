@@ -10,12 +10,12 @@ export const successStories = [
   },
   {
     id: 2,
-    title: "Community-Led Predator Control Thrives in Taranaki",
-    excerpt: "Taranaki locals and iwi partners have reduced predator numbers by 85%, supporting kōkako and kererū populations to thrive.",
-    date: "Mar 2, 2025",
-    image: "/StoriesImages/predator.jpg",
-    category: "Conservation",
-    slug: "taranaki-predator-control-success"
+    title: "Waikato Riverbanks Restored with Native Planting",
+    excerpt: "Local school children join iwi and conservation groups to plant native trees and flax along the Waikato River.",
+    date: "Feb 18, 2025",
+    image: "/StoriesImages/tamariki.jpg",
+    category: "Community",
+    slug: "tamariki-waikato-planting"
   },
   {
     id: 3,
@@ -46,12 +46,12 @@ export const successStories = [
   },
   {
     id: 6,
-    title: "Waikato Riverbanks Restored with Native Planting",
-    excerpt: "Local school children join iwi and conservation groups to plant native trees and flax along the Waikato River.",
-    date: "Feb 18, 2025",
-    image: "/StoriesImages/tamariki.jpg",
-    category: "Community",
-    slug: "tamariki-waikato-planting"
+    title: "Community-Led Predator Control Thrives in Taranaki",
+    excerpt: "Taranaki locals and iwi partners have reduced predator numbers by 85%, supporting kōkako and kererū populations to thrive.",
+    date: "Mar 2, 2025",
+    image: "/StoriesImages/predator.jpg",
+    category: "Conservation",
+    slug: "taranaki-predator-control-success"
   },
   {
     id: 7,

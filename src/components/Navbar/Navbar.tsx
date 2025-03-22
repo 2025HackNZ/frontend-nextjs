@@ -41,7 +41,7 @@ export default function Navbar({
   }, [])
 
   return (
-    <nav className="fixed flex items-center justify-between w-full py-4 border-b border-gray-200 px-2 bg-background z10">
+    <nav className="fixed flex items-center justify-between w-full py-4 border-b border-gray-200 px-2 bg-background z-10">
       {/* Logo */}
       <div>
         <Link href="/">

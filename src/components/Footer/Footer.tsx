@@ -7,7 +7,13 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto flex flex-wrap justify-between px-8">
         {/* Logo and About */}
         <div className="w-full md:w-1/3 lg:w-1/4 mb-4">
-          <Image src="/logo.svg" alt="Koru Logo" width={150} height={50} className="mb-2" />
+          <Image 
+            src="/cream_logo.svg" 
+            alt="Koru Logo" 
+            width={150} 
+            height={50} 
+            className="mb-2" 
+          />
           <p className="mb-2 leading-relaxed text-gray-300 text-xs">
             Koru supports conservation projects across New Zealand to protect our unique biodiversity and natural landscapes.
           </p>
@@ -81,19 +87,24 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-8 pt-3 border-t border-[#444] mt-2">
         <div className="flex justify-center space-x-3 mb-2">
           {[
-            { name: 'Facebook', bg: '#3b5998', icon: 'f' },
-            { name: 'Twitter', bg: '#00acee', icon: 't' },
-            { name: 'Instagram', bg: '#c13584', icon: 'i' },
-            { name: 'LinkedIn', bg: '#0e76a8', icon: 'in' },
-            { name: 'TikTok', bg: '#000000', icon: 't' }
+            { name: 'Facebook', icon: '/facebook.svg' },
+            { name: 'X', icon: '/x.svg' },
+            { name: 'Instagram', icon: '/instagram.svg' },
+            { name: 'LinkedIn', icon: '/linkedin.svg' },
+            { name: 'TikTok', icon: '/tiktok.svg' }
           ].map((social) => (
             <a
               key={social.name}
               href="#"
-              className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs"
-              style={{ backgroundColor: social.bg }}
+              className="w-6 h-6 flex items-center justify-center text-white"
             >
-              {social.icon}
+              <Image 
+                src={social.icon}
+                alt={social.name}
+                width={20}
+                height={20}
+                className="hover:opacity-80 transition-opacity"
+              />
             </a>
           ))}
         </div>
