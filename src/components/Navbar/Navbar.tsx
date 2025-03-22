@@ -16,7 +16,7 @@ export default function Navbar({
   logo,
 }: NavbarProps) {
   const menuItems = [
-    { name: "Projects", href: "/" },
+    { name: "Projects", href: "/projects" },
     { name: "Partners", href: "/partners" },
     { name: "Sponsors", href: "/sponsors" },
   ]
@@ -120,8 +120,7 @@ export default function Navbar({
                           type="button"
                           className="flex items-center rounded-lg py-2 px-4 transition-colors"
                         >
-                          <div className="w-8 h-8 bg-green-400 rounded-full mr-2"></div>
-                          {/* <span className="font-medium">{account.displayName}</span> */}
+                          <Image src={'/profile.png'} alt="profile placeholder" width={30} height={30} />
                         </button>
 
                         {isDropdownOpen && (
