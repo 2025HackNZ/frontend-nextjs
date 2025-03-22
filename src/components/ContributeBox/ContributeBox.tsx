@@ -35,16 +35,16 @@ export default function ContributeBox() {
   }
 
   return (
-    <div className="flex flex-col my-4 w-full border border-gray">
-      <p className="font-bold">Contribute NZDD</p>
-      {/* Input Component */}
+    <div className="flex flex-col w-full p-4 border border-gray">
+      <p className="text-black font-bold">Contribute NZDD</p>
+      <div className="h-2" />
       <AmountInput
         value={amount}
         balance={isConnected ? `${data?.formatted} ${data?.symbol}` : undefined}
         placeholder="Enter amount to contribute"
         onChange={setAmount}
       />
-
+      <div className="h-4" />
       <button
         onClick={() => handleContribute()}
         className="w-full py-6 text-lg bg-black text-white rounded-lg"
