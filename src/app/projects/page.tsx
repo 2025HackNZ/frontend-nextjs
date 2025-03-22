@@ -57,7 +57,6 @@ export default function Projects() {
       args: [BigInt(project.id)],
     })),
   } as any)
-    console.log("🚀 ~ Projects ~ proposalsData:", proposalsData)
 
   const handleVote = (projectId: number | string) => {
     writeContract({
@@ -81,7 +80,6 @@ export default function Projects() {
 
     return y;
   }
-  console.log("🚀 ~ updatedProjects ~ deposits:", deposits)
 
   useEffect(() => {
     if (proposalsData && proposalsData.length > 0) {
@@ -107,22 +105,14 @@ export default function Projects() {
         const amount = Number(formatUnits(amountBigInt, nzddDigits));
         const totalDepositsNum = Number(totalDepositsBigInt); // Or use formatUnits if needed
 
-        console.log("Yes Votes:", yesVotes);
-        console.log("Total Deposits:", totalDepositsNum);
-
         // Calculate total voting power using the square root function
         const totalVotingPower = sqrt(totalDepositsNum);
-        console.log("Total Voting Power:", totalVotingPower);
 
         // Calculate current percentage of voting power
         const currentPercentage = (yesVotes / totalVotingPower) * 100;
-        console.log("Current Percentage:", currentPercentage);
 
         // Calculate the progress (capped at 100%)
         const progress = Math.min(Math.round(currentPercentage), 100);
-        console.log("Progress:", progress);
-
-        console.log("🚀 ~ updatedProjects ~ progress:", progress)
 
         return {
           ...project,
