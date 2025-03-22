@@ -1,5 +1,6 @@
 "use client"
 import * as React from "react"
+import Link from "next/link";
 import { ProjectCard } from "@/components/ProjectCard/ProjectCard"
 import { projects as projectsData } from "@/app/constants/projectData"
 import { useAccount, useReadContract, useReadContracts, useWriteContract } from "wagmi"
@@ -96,19 +97,19 @@ export default function Projects() {
 
         console.log("Yes Votes:", yesVotes);
         console.log("Total Deposits:", totalDepositsNum);
-        
+
         // Calculate total voting power using the square root function
         const totalVotingPower = sqrt(totalDepositsNum);
         console.log("Total Voting Power:", totalVotingPower);
-        
+
         // Calculate current percentage of voting power
         const currentPercentage = (yesVotes / totalVotingPower) * 100;
         console.log("Current Percentage:", currentPercentage);
-        
+
         // Calculate the progress (capped at 100%)
         const progress = Math.min(Math.round(currentPercentage), 100);
         console.log("Progress:", progress);
-        
+
         console.log("🚀 ~ updatedProjects ~ progress:", progress)
 
         return {
@@ -164,21 +165,21 @@ export default function Projects() {
         <h3 className="text-3xl font-bold text-gray-800 mb-6">Total Contributions: ${isConnected && deposits && formatUnits(deposits, nzddDigits)}</h3>
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        
-        {!isConnected ? (
-          <>Connect Wallet First</>
-        ) : (
-          <>
-            {projects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                isMember={isMember}
-                onVote={() => handleVote(project.id)}
-              />
-            ))}
-          </>
-        )}
+
+      <>
+        {projects.map((project) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            isMember={isMember}
+            onVote={() => handleVote(project.id)}
+          />
+        ))}
+      </>
+
+      <Link href={`https://sepolia.etherscan.io/address/${daoContractAddress}`} target="_blank" rel="noopener noreferrer" >
+        DAO contract address: {daoContractAddress}
+      </Link>
       </div>
     </div>
   )
