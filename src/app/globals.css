@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@tailwind components;
+/* @tailwind components; */
 @tailwind utilities;
 
 :root {
@@ -20,8 +20,8 @@
   --color-muted: var(--muted);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  /* --color-primary: var(--kiwi); */
-  /* --color-secondary: var(--brown); */
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --color-accent: var(--kiwi);
   /* --color-muted: var(--gray); */
   --color-dark: var(--semi-black);

@@ -25,41 +25,52 @@ interface ProjectCardProps {
     impact: string
     activities: string[]
     votes?: number
+    proposalData?: {
+      description: string,
+      yesVotes: number,
+      endTime: any,
+      executed: boolean,
+      amount: number,
+      target: number
+    },
   }
+  isMember?: boolean
   onVote?: () => void
   className?: string
 }
 
-export function ProjectCard({ 
+export function ProjectCard({
   project,
-  onVote, 
-  className = "" 
+  onVote,
+  isMember,
+  className = ""
 }: ProjectCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const truncatedDescription = project.description.length > 100 
+  const truncatedDescription = project.description.length > 100
     ? project.description.slice(0, 100) + "..."
     : project.description
 
   return (
     <>
-      <div 
+      <div
         onClick={() => setIsModalOpen(true)}
-        className={`relative h-[600px] rounded-3xl overflow-hidden shadow-md border border-black cursor-pointer hover:shadow-lg transition-shadow ${className}`}
+        className={`relative h-[600px] rounded-3xl overflow-hidden shadow-md border border-muted cursor-pointer hover:shadow-lg transition-shadow ${className}`}
       >
         {/* Image positioned above content */}
         <div className="h-2/3 relative">
-          <Image 
-            src={project.image} 
+          <Image
+            src={project.image}
             alt={project.title}
             fill
             className="object-cover"
             priority
           />
         </div>
-        
+
         {/* Content section */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 bg-[#FFF8E1] h-1/3">
+        <div className="absolute bottom-0 left-0 right-0 p-6 bg-background">
           <h3 className="text-3xl font-semibold mb-2">{project.title}</h3>
+          <h5 className="text-lg font-semibold mb-2">Target: ${project?.proposalData?.amount}</h5>
           <p className="text-gray-700 mb-4 text-sm line-clamp-2">{truncatedDescription}</p>
 
           {/* Progress Bar */}
@@ -73,16 +84,17 @@ export function ProjectCard({
           />
 
           <div className="flex justify-between items-center">
-            <Button 
+            <Button
               onClick={(e) => {
                 e.stopPropagation()
                 onVote?.()
               }}
               className="bg-black text-white px-8 py-2 rounded-full hover:bg-gray-800 transition-colors text-xl"
+              disabled={!isMember || project.proposalData?.executed}
             >
               Vote
             </Button>
-            <span className="text-2xl font-medium text-gray-700">{project.projectType}</span>
+            <Image src={project.iconImage} width={40} height={40} alt="type icon" />
           </div>
         </div>
       </div>

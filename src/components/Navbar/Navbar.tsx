@@ -16,7 +16,7 @@ export default function Navbar({
   logo,
 }: NavbarProps) {
   const menuItems = [
-    { name: "Projects", href: "/" },
+    { name: "Projects", href: "/projects" },
     { name: "Partners", href: "/partners" },
     { name: "Sponsors", href: "/sponsors" },
   ]
@@ -44,7 +44,9 @@ export default function Navbar({
     <nav className="fixed flex items-center justify-between w-full py-4 border-b border-gray-200 px-2 bg-background z10">
       {/* Logo */}
       <div>
-        <Image src={logo} alt="Logo" width={120} height={60} className="h-auto" />
+        <Link href="/">
+          <Image src={logo} alt="Logo" width={120} height={60} className="h-auto" />
+        </Link>
       </div>
 
       {/* Menu items */}
@@ -92,7 +94,7 @@ export default function Navbar({
                         <button
                           onClick={openConnectModal}
                           type="button"
-                          className="bg-green-400 hover:bg-green-500 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                          className="bg-secondary hover:bg-secondary text-white font-medium py-2 px-4 rounded-lg transition-colors"
                         >
                           Connect Wallet
                         </button>
@@ -118,8 +120,7 @@ export default function Navbar({
                           type="button"
                           className="flex items-center rounded-lg py-2 px-4 transition-colors"
                         >
-                          <div className="w-8 h-8 bg-green-400 rounded-full mr-2"></div>
-                          {/* <span className="font-medium">{account.displayName}</span> */}
+                          <Image src={'/profile.png'} alt="profile placeholder" width={30} height={30} />
                         </button>
 
                         {isDropdownOpen && (

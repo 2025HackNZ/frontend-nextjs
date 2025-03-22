@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import localFont from 'next/font/local'
-
 import '@rainbow-me/rainbowkit/styles.css';
 import "./globals.css";
 
@@ -9,16 +7,6 @@ import Provider from "./providers";
 import Navbar from "../components/Navbar/Navbar";
 import { ContributeModal } from "@/components/ContributeModal/ContributeModal"
 import Footer from "../components/Footer/Footer";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const myFont = localFont({
   src: '../../public/fonts/Futura Book font.ttf',
