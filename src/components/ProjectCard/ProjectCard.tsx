@@ -1,63 +1,99 @@
 "use client"
+import { useState } from "react"
 import Image from "next/image"
-import  Button from "@/components/Button/Button"
-// import { ProgressBar } from "@/components/ProgressBar/ProgressBar"
+import Button from "@/components/Button/Button"
+import { ProgressBar } from "@/components/ProgressBar/ProgressBar"
+import { ProjectModal } from "@/components/Modal/ProjectModal/ProjectModal"
 
 interface ProjectCardProps {
-  id: string | number
-  title: string
-  image: string
-  description: string
-  votes: number
+  project: {
+    id: number
+    title: string
+    description: string
+    image: string
+    progress: number
+    projectType: string
+    iconImage: string
+    location: string
+    organization: string
+    funding: {
+      current: number
+      target: number
+    }
+    startDate: string
+    endDate: string
+    impact: string
+    activities: string[]
+    votes?: number
+  }
   onVote?: () => void
   className?: string
 }
 
 export function ProjectCard({ 
-  title, 
-  description, 
-  image, 
-  votes, 
+  project,
   onVote, 
   className = "" 
 }: ProjectCardProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const truncatedDescription = project.description.length > 100 
+    ? project.description.slice(0, 100) + "..."
+    : project.description
+
   return (
-    <div className={`bg-white rounded-lg shadow overflow-hidden ${className}`}>
-      <div className="relative h-48 w-full">
-        <Image 
-          src={image || "/placeholder.svg"} 
-          alt={title}
-          fill
-          className="object-contain"
-        />
-      </div>
-
-      <div className="p-4">
-        <h3 className="font-medium mb-2">{title}</h3>
-        <p className="text-gray-500 mb-3">{description}</p>
-
-        {/* Static Progress Bar */}
-        <div className="w-full bg-gray-200 rounded-full h-2.5 mb-3">
-          <div 
-            className="bg-green-600 h-2.5 rounded-full"
-            style={{ width: '45%' }}  // You can adjust this static value
+    <>
+      <div 
+        onClick={() => setIsModalOpen(true)}
+        className={`relative h-[600px] rounded-3xl overflow-hidden shadow-md border border-black cursor-pointer hover:shadow-lg transition-shadow ${className}`}
+      >
+        {/* Image positioned above content */}
+        <div className="h-2/3 relative">
+          <Image 
+            src={project.image} 
+            alt={project.title}
+            fill
+            className="object-cover"
+            priority
           />
         </div>
+        
+        {/* Content section */}
+        <div className="absolute bottom-0 left-0 right-0 p-6 bg-[#FFF8E1] h-1/3">
+          <h3 className="text-3xl font-semibold mb-2">{project.title}</h3>
+          <p className="text-gray-700 mb-4 text-sm line-clamp-2">{truncatedDescription}</p>
 
-        {/* Vote count */}
-        <div className="text-right text-sm text-gray-500 mb-3">
-          {votes.toLocaleString()} votes
+          {/* Progress Bar */}
+          <ProgressBar
+            value={project.progress}
+            max={100}
+            thickness="thick"
+            variant="success"
+            animated={false}
+            className="mb-4"
+          />
+
+          <div className="flex justify-between items-center">
+            <Button 
+              onClick={(e) => {
+                e.stopPropagation()
+                onVote?.()
+              }}
+              className="bg-black text-white px-8 py-2 rounded-full hover:bg-gray-800 transition-colors text-xl"
+            >
+              Vote
+            </Button>
+            <span className="text-2xl font-medium text-gray-700">{project.projectType}</span>
+          </div>
         </div>
-
-        <Button 
-          variant="outline" 
-          className="w-full" 
-          onClick={onVote}
-        >
-          Vote
-        </Button>
       </div>
-    </div>
+
+      <ProjectModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        project={project}
+      />
+    </>
   )
 }
 
+export default ProjectCard;
