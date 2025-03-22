@@ -1,61 +1,23 @@
 "use client"
+import React from 'react'
+import PartnerCard from '@/components/PartnerCard/PartnerCard'
+import { partners } from '@/app/constants/partnerData'
 
-import * as React from "react"
-import { ProjectCard } from "@/components/ProjectCard/ProjectCard"
-
-const initialProjects = [
-  {
-    id: 1,
-    title: "Trees That Count",
-    image: "/SampleImages/Trees.png",
-    description: "A national initiative to plant millions of native trees throughout New Zealand.",
-    votes: 100,
-    progress: 50,
-  },
-  {
-    id: 2,
-    title: "Matariki Tu Rākau",
-    image: "/SampleImages/Matariki.jpg",
-    description: "A government-led program launched in 2018 to plant native trees in honor of military service and community well-being.",
-    votes: 200,
-    progress: 75,
-  },
-  {
-    id: 3,
-    title: "Project Crimson — The Living Legends Project",
-    image: "/SampleImages/ProjectCrimson.jpg",
-    description: "A project started to protect and restore New Zealand's native pōhutukawa and rātā trees.",
-    votes: 300,
-    progress: 100,
-  },
-]
-
-export default function Partners() {
-  const [projects, setProjects] = React.useState(initialProjects)
-
-  const handleVote = (projectId: number | string) => {
-    setProjects((prevProjects) =>
-      prevProjects.map((project) =>
-        project.id === projectId ? { ...project, votes: project.votes + 10 } : project,
-      ),
-    )
-  }
-
+export default function PartnersPage() {
   return (
-    <main className="container mx-auto py-32"> {/* Increased top padding for navbar */}
-      <div className="grid gap-6 md:grid-cols-3">
-        {projects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            id={project.id}
-            title={project.title}
-            image={project.image}
-            description={project.description}
-            votes={project.votes}
-            onVote={() => handleVote(project.id)}
-          />
+    <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="mb-10">
+        <h1 className="text-3xl font-bold mb-4 py-12">Partners</h1>
+        <p className="text-xl text-gray-600 max-w-3xl">
+          See how your contributions are being used by conservation organizations
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {partners.map((partner) => (
+          <PartnerCard key={partner.id} partnerId={partner.id.toString()} />
         ))}
       </div>
-    </main>
+    </div>
   )
 }
