@@ -3,9 +3,9 @@ import * as React from "react"
 import { ProjectCard } from "@/components/ProjectCard/ProjectCard"
 import { projects as projectsData } from "@/app/constants/projectData"
 import { useAccount, useReadContract, useReadContracts, useWriteContract } from "wagmi"
-import { abi, contractAddress } from "../../utils/utils"
+import { daoABI, daoContractAddress, nzddDigits } from "../../utils/utils"
 import { useEffect, useState } from "react"
-import { formatEther, parseEther } from "viem"
+import { formatUnits, parseEther } from "viem"
 
 export default function Projects() {
   const account = useAccount()
@@ -22,28 +22,28 @@ export default function Projects() {
 
   // Get member info
   const { data: memberInfo, error: memberError, refetch: refetchMemberInfo } = useReadContract({
-    abi: abi,
-    address: contractAddress as `0x${string}`,
+    abi: daoABI,
+    address: daoContractAddress as `0x${string}`,
     functionName: "getMemberInfo",
     args: [account.address as `0x${string}`]
   }) as any;
 
   const { data: deposits, refetch: refetchDeposits } = useReadContract({
-    abi: abi,
-    address: contractAddress as `0x${string}`,
+    abi: daoABI,
+    address: daoContractAddress as `0x${string}`,
     functionName: "totalDeposits",
   }) as any;
   console.log("🚀 ~ Projects ~ deposits:", deposits)
 
-  const { 
-    data: proposalsData, 
-    isError: isProposalsError, 
+  const {
+    data: proposalsData,
+    isError: isProposalsError,
     isLoading: isProposalsLoading,
     refetch: refetchProposals
   } = useReadContracts({
     contracts: projectsData.map((project) => ({
-      address: contractAddress as `0x${string}`,
-      abi,
+      address: daoContractAddress as `0x${string}`,
+      abi: daoABI,
       functionName: 'proposals',
       args: [BigInt(project.id)],
     })),
@@ -51,8 +51,8 @@ export default function Projects() {
 
   const handleVote = (projectId: number | string) => {
     writeContract({
-      abi: abi,
-      address: contractAddress,
+      abi: daoABI,
+      address: daoContractAddress,
       functionName: 'vote',
       args: [projectId],
     })
@@ -60,15 +60,15 @@ export default function Projects() {
 
   const sqrt = (totatDeposits: number) => {
     if (totatDeposits === 0) return 0;
-    
+
     let z = (totatDeposits + 1) / 2;
     let y = totatDeposits;
-    
+
     while (z < y) {
         y = z;
         z = (totatDeposits / z + z) / 2;
     }
-    
+
     return y;
   }
 
@@ -76,28 +76,28 @@ export default function Projects() {
     if (proposalsData && proposalsData.length > 0) {
       const updatedProjects = projectsData.map((project, index) => {
         const proposalResult = proposalsData[index];
-        
+
         if (!proposalResult?.result) {
           return project;
         }
-        
+
         const proposalData = proposalResult.result as any[];
-        
+
         // Calculate current funding based on blockchain data
         // Assuming amount represents total funding needed and votes are the progress towards it
         const yesVotes = Number(proposalData[1]);
-        const amount = Number(formatEther(proposalData[4]));
+        const amount = Number(formatUnits(proposalData[4], nzddDigits));
 
-        const totalVotingPower = sqrt(Number(formatEther(deposits)));
-        
+        const totalVotingPower = sqrt(Number(formatUnits(deposits, nzddDigits)));
+
         // Calculate current percentage of voting power
         // In the contract, a proposal needs 51% to pass
         const currentPercentage = (yesVotes / totalVotingPower) * 100;
         const progress = Math.min(Math.round(currentPercentage), 100);
-        
+
         // Calculate threshold needed to pass
         const threshold = totalVotingPower * 0.51;
-        
+
         return {
           ...project,
           progress: progress,
@@ -118,8 +118,8 @@ export default function Projects() {
           }
         };
       });
-      
-      setProjects((prevProjects: any) => 
+
+      setProjects((prevProjects: any) =>
         updatedProjects.map((newProject, index) => ({
           ...newProject,
         }))
@@ -129,7 +129,7 @@ export default function Projects() {
 
   useEffect(() => {
     if(memberInfo) {
-      const depositAmount = Number(formatEther(memberInfo[0]));
+      const depositAmount = Number(formatUnits(memberInfo[0], nzddDigits));
       setContributions(depositAmount);
       setIsMember(depositAmount > 0);
     }
