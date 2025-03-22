@@ -160,7 +160,7 @@ export default function HomePage() {
               Through transparency and community engagement, we&apos;re creating a sustainable future for New Zealand&apos;s unique ecosystems and native species.
             </p>
             <div className="flex justify-center space-x-6">
-              <button className="bg-[#c5a460] text-white border-2 border-[#c5a460] px-10 py-4 rounded-md hover:bg-[#b39355] hover:border-[#b39355] transition-colors text-lg font-medium">
+              <button onClick={() => handleContribute()} className="bg-[#c5a460] text-white border-2 border-[#c5a460] px-10 py-4 rounded-md hover:bg-[#b39355] hover:border-[#b39355] transition-colors text-lg font-medium">
                 Start Contributing
               </button>
             </div>
