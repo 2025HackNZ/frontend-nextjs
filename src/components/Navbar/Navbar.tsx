@@ -138,16 +138,16 @@ export default function Navbar({
 
                             {/* Menu options */}
                             <div className="py-2">
-                              <a href="/profile" className="flex items-center px-4 py-3 hover:bg-gray-100 transition-colors">
+                              <Link href="/profile" className="flex items-center px-4 py-3 hover:bg-gray-100 transition-colors">
                                 <div className="text-blue-600 mr-3">
                                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                                   </svg>
                                 </div>
                                 <span className="text-gray-700">View Profile</span>
-                              </a>
+                              </Link>
 
-                              <a href="/" className="flex items-center px-4 py-3 hover:bg-gray-100 transition-colors">
+                              <Link href="/" className="flex items-center px-4 py-3 hover:bg-gray-100 transition-colors">
                                 <div className="text-yellow-600 mr-3">
                                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
@@ -155,16 +155,16 @@ export default function Navbar({
                                   </svg>
                                 </div>
                                 <span className="text-gray-700">Add NZDD Funds</span>
-                              </a>
+                              </Link>
 
-                              <a href="#" className="flex items-center px-4 py-3 hover:bg-gray-100 transition-colors">
+                              <Link href="#" className="flex items-center px-4 py-3 hover:bg-gray-100 transition-colors">
                                 <div className="text-red-600 mr-3">
                                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
                                   </svg>
                                 </div>
                                 <span className="text-gray-700">Help Center</span>
-                              </a>
+                              </Link>
 
                               <button
                                 onClick={openAccountModal}
