@@ -35,7 +35,7 @@ export function ContributeBox() {
   }
 
   return (
-    <div className="flex flex-col w-full p-4 border border-gray bg-white">
+    <div className="flex flex-col w-full p-4 border bg-white">
       <p className="text-black font-bold">Contribute ETH</p>
       <div className="h-2" />
       <AmountInput

@@ -60,7 +60,7 @@ export default function Navbar({
             {item.name}
           </Link>
         ))}
-        <button onClick={() => { openModal(<ContributeBox />) }}>Contribute</button>
+        <button className="bg-secondary rounded-md px-4 py-0.5 text-white font-bold" onClick={() => { openModal(<ContributeBox />) }}>Contribute</button>
         {/* Custom Connect wallet button */}
         <div className="relative" ref={dropdownRef}>
           <ConnectButton.Custom>

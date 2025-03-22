@@ -13,14 +13,17 @@
 }
 
 @theme {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-primary: var(--kiwi);
-  --color-secondary: var(--brown);
+  /* --color-primary: var(--kiwi); */
+  /* --color-secondary: var(--brown); */
   --color-accent: var(--kiwi);
-  --color-muted: var(--gray);
+  /* --color-muted: var(--gray); */
   --color-dark: var(--semi-black);
 }
 
